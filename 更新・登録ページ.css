@@ -1,0 +1,14 @@
+img {
+    width: 60px;
+
+}
+
+.button {
+
+    background-color: #333;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: rgb(182, 86, 86);
+}
