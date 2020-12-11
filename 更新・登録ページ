@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/write.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/common.js"></script>
+    <title>求人作成・更新ページ</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper green lighten-2">
+            <a class="team-name center">卒業制作</a>
+            <a href="#" class="brand-logo center">
+                <img src="../トマト.png" alt="logo">
+            </a>
+
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="badges.html">投稿</a></li>
+                <li><a href="collapsible.html">マイページへ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <form action="#" methods="post">
+
+            <table border="0">
+                <tr>
+                    <td align="right"><b> ・求人タイトル：</b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+
+                <tr>
+                    <td align="right"><b> ・写真（複数可）:</b></td>
+                    <td><input type="file" id="img_photo" accept="image/*" size="500">
+                        <img id="preview" alt="pre">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right"><b>・農業紹介: </b></td>
+                    <td><input type="text" size="30" maxlength="40"></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・仕事内容: </b></td>
+                    <td><input type="text" size="30" maxlength="150">(150字以内)</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・給与: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・対象となる人: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・勤務地: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・勤務時間: </b></td>
+                    <td><input type="time" size="30" maxlength="20">〜<input type="time" size="30" maxlength="20"></td>
+                </tr>
+
+
+                <tr>
+                    <td align="right"><b>・雇用形態: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>・休暇: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+
+                <tr>
+                    <td align="right"><b>・待遇・福利厚生: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+
+                <tr>
+                    <td align="right"><b>・応募の流れ: </b></td>
+                    <td><input type="text" size="30" maxlength="20"></td>
+                </tr>
+
+                <tr>
+                    <td align="right"><b>・SNSのリンク先: </b></td>
+                    <td><input type="text" size="30" maxlength="100"></td>
+                </tr>
+                <td>
+                    <a class="button" href="#">　　登録　　</a>
+                </td>
+
+
+
+
+            </table>
+        </form>
+
+
+
+
+
+    </main>
+</body>
+
+</html>
