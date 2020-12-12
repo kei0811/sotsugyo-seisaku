@@ -21,14 +21,7 @@ def post():
 
 
 
-# メインページへアクセス
-@app.route("/main.html")
-def move_main():
-    return render_template("main.html")
-# メインページから投稿画面へ
-@app.route("/write.html")
-def post():
-    return render_template("write.html")
+
 
 
 
