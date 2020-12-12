@@ -9,6 +9,26 @@ app.secret_key = 'sunabakoza'
 @app.route('/')
 def login():
     return render_template('login.html')
+# メインページへアクセス
+@app.route("/main.html")
+def move_main():
+    return render_template("main.html")
+# メインページから投稿画面へ
+@app.route("/write.html")
+def post():
+    return render_template("write.html")
+
+
+
+
+# メインページへアクセス
+@app.route("/main.html")
+def move_main():
+    return render_template("main.html")
+# メインページから投稿画面へ
+@app.route("/write.html")
+def post():
+    return render_template("write.html")
 
 
 
