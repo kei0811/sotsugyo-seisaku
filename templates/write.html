@@ -28,12 +28,12 @@
     </nav>
 
     <main>
-        <form action="/add" methods="post">
+        <form action="/main.html" methods="POST">
 
             <table border="0">
                 <tr>
                     <td align="right"><b> ・求人タイトル：</b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" title="title_task"></td>
                 </tr>
 
                 <tr>
@@ -45,55 +45,56 @@
 
                 <tr>
                     <td align="right"><b>・農業紹介: </b></td>
-                    <td><input type="text" size="30" maxlength="40"></td>
+                    <td><input type="text" size="30" maxlength="40" introduce="intro_task"></td>
                 </tr>
                 <tr>
                     <td align="right"><b>・仕事内容: </b></td>
-                    <td><input type="text" size="30" maxlength="150">(150字以内)</td>
+                    <td><input type="text" size="30" maxlength="150" job="work_task">(150字以内)</td>
                 </tr>
                 <tr>
                     <td align="right"><b>・給与: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" salary="salary_task"></td>
                 </tr>
                 <tr>
                     <td align="right"><b>・対象となる人: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" target="target_task"></td>
                 </tr>
                 <tr>
                     <td align="right"><b>・勤務地: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" location="location_task"></td>
                 </tr>
                 <tr>
                     <td align="right"><b>・勤務時間: </b></td>
-                    <td><input type="time" size="30" maxlength="20">〜<input type="time" size="30" maxlength="20"></td>
+                    <td><input type="time" size="30" maxlength="20">〜<input type="time" size="30" maxlength="20"
+                            hours="hours_task"></td>
                 </tr>
 
 
                 <tr>
                     <td align="right"><b>・雇用形態: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" employ_status="status_task"></td>
                 </tr>
                 <tr>
                     <td align="right"><b>・休暇: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" holiday="holiday_task"></td>
                 </tr>
 
                 <tr>
                     <td align="right"><b>・待遇・福利厚生: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" walfare="walfare_task"></td>
                 </tr>
 
                 <tr>
                     <td align="right"><b>・応募の流れ: </b></td>
-                    <td><input type="text" size="30" maxlength="20"></td>
+                    <td><input type="text" size="30" maxlength="20" flow="flow_task"></td>
                 </tr>
 
                 <tr>
                     <td align="right"><b>・SNSのリンク先: </b></td>
-                    <td><input type="text" size="30" maxlength="100"></td>
+                    <td><input type="text" size="30" maxlength="100" sns_link="link_task"></td>
                 </tr>
                 <td>
-                    <a class="button" href="#">　　登録　　</a>
+                    <input type="submit" value="投稿しました！">
                 </td>
 
 

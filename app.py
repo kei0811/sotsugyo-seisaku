@@ -3,6 +3,8 @@ import sqlite3
 
 app = Flask(__name__)
 
+
+
 # Flask では標準で Flask.secret_key を設定すると、sessionを使うことができます。この時、Flask では session の内容を署名付きで Cookie に保存します。
 app.secret_key = 'sunabakoza'
 
@@ -17,6 +19,17 @@ def move_main():
 @app.route("/write.html")
 def post():
     return render_template("write.html")
+# データベースに情報追加
+@app.route("/write.html",methods=["POST"])
+def db_info():
+    task = request.form.get("title_task", "intro_task", "work_task", "salary_task", "target_task", "location_task", "hours_task", "status_task", "holiday_task", "walfare_task", "flow_task", "link_task")
+    conn = sqlite3.connect("20201209.db")
+    c = conn.corsor()
+    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?)")
+    conn.commit()
+    c.close()
+    return"投稿されました"
+    
 
 
 
