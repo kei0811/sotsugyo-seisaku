@@ -20,7 +20,7 @@ background-color: rgb(106, 247, 99);
 .box{
 	text-align: center;
 }
-.waves-effect waves-light btn {
+.btn waves-effect waves-light btn {
 	text-align: center;
 	background-color: lightcyan;
 }
