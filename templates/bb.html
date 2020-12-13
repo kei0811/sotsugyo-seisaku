@@ -16,56 +16,44 @@
          
 </head>
 <body>
-  <form action="/new" method="POST">
-   <h5>新規登録</h5>
+<form action="/new" method="POST">
+<h5>新規登録</h5>
+
+
+
+<span><font color="black">写真</font></span>
+<input type="file" multiple><br>
     
-   
-      
-                <span><font color="black">写真</font></span>
-                <input type="file" multiple>
-              
-                <input class="file-path validate" type="text" placeholder="写真がありません" name="users_image">
-              
-          
+<label for="name">名前</label>
+<input id="name" type="text" class="validate" name="users_name">
 
-          
-                      <input id="name" type="text" class="validate" name="users_name">
-                      <label for="name">名前</label>
-                     
-                   
-              
-                        <input id="representative" type="text" class="validate" name="users_representative">
-                        <label for="representative">代表者</label>
-                      
-                    
-             
-                        <input id="local" type="text" class="validate" name="users_local">
-                        <label for="local">所在地</label>
-                   
-             
-                  <input id="password" type="password" class="validate" name="users_password">
-                  <label for="password">パスワード</label>
-                
-      
-                  <input id="email" type="email" class="validate" name="users_email">
-                  <label for="email">メールアドレス</label>
-          
-              
-           
 
-       
+<label for="representative">代表者</label>
+<input id="representative" type="text" class="validate" name="users_representative">
 
-       
-                  <textarea id="textarea1" class="materialize-textarea" name="users_introduce"></textarea>
-                  <label for="introduce">紹介文</label>
+
+<label for="local">所在地</label>
+<input id="local" type="text" class="validate" name="users_local">
+
+
+<label for="password">パスワード</label>
+<input id="password" type="password" class="validate" name="users_password">
+
+
+<label for="email">メールアドレス</label>
+<input id="email" type="email" class="validate" name="users_email">
+
+<label for="introduce">紹介文</label>  
+<textarea id="textarea1" class="materialize-textarea" name="users_introduce"></textarea>
+
                
        
-    <div class="box">
-      
-        <button class="btn waves-effect waves-light" type="submit" name="action">完了 </button>
-  
-    </div>
-  </form>  
+<div class="box">   
+<button class="btn waves-effect waves-light" type="submit" name="action">完了 </button>
+</div>
+
+
+</form>  
      
 </body>
 </html>
