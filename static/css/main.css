@@ -63,3 +63,13 @@ button.readmore::after {
 button.readmore:hover::after {
     top: 40px;
 }
+
+.on-click {
+    color: transparent !important;
+}
+
+
+.on-click {
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+}

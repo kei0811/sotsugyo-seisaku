@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = 'sunabakoza'
 
 @app.route('/')
-def login():
+def login_get():
     return render_template('login.html')
 
 # メインページへアクセス
@@ -21,28 +21,47 @@ def move_main():
 def post():
     return render_template("write.html")
 # データベースに情報追加
-@app.route("/post",methods=["POST"])
+@app.route("/write.html",methods=["POST"])
 def db_info():
-    task = request.form.get("title_task", "intro_task", "work_task", "salary_task", "target_task", "location_task", "hours_task", "status_task", "holiday_task", "walfare_task", "flow_task", "link_task")
+    
+    title = str(request.form.get("title_task"))
+    intro = str(request.form.get("intro_task"))
+    work  = str(request.form.get("title_task"))
+    salary = str(request.form.get("salary_task"))
+    target = str(request.form.get("target_task"))
+    time = str(request.form.get("hours_task"))
+    status = str(request.form.get("status_task"))
+    walfare = str(request.form.get("walfare_task"))
+    flow = str(request.form.get("flow_task"))
+    sns_link = str(request.form.get("link_task"))
     conn = sqlite3.connect("20201209.db")
-    c = conn.cursor()
-    c.execute ("insert into job  valuse (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",(id, Ctitle_task, intro_task, work_task, salary_task, target_task, location_task, hours_task, status_task, holiday_task, walfare_task, flow_task, link_task,))
+    c = conn.corsor()
+    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"(title, intro, work, salary, target, time, status, walfare, flow, sns_link),)
     conn.commit()
     c.close()
     return"投稿されました"
 
+@app.route("/login",methods=["POST"])
+def login_post():
+    name=request.form.get("member_name")
+    password=request.form.get("member_pass")
+    # flasktest.db接続
+    conn=sqlite3.connect("20201209.db")
+    # 中を見れるようにする
+    c=conn.cursor()
+    # SQLを実行
+    c.execute("select id from users where name=? and pass=?",(name,password))
+    user_id=c.fetchone()
+    user_id=user_id[0]
+    # データベース接続終了
+    c.close()
 
-
-    
-
-
-
-
-
-
-
-
-
+    if user_id is None:#アカウント名、パスワードが一致しなかったとき
+        return render_template("login.html")
+    else:#アカウント名、パスワードが一致したとき
+        session["user_id"]=user_id #sessionに格納
+        return redirect("/main")
+        # リンク先要指定
 
 
 
