@@ -16,7 +16,8 @@
          
 </head>
 <body>
-    <h5>新規登録</h5>
+  <form action="/new" method="POST">
+   <h5>新規登録</h5>
     
    
         <form action="#">
@@ -26,7 +27,7 @@
                 <input type="file" multiple>
               </div>
               <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="写真がありません">
+                <input class="file-path validate" type="text" placeholder="写真がありません" name="user_img">
               </div>
             </div>
           </form>
@@ -37,34 +38,34 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                      <input id="name" type="text" class="validate">
+                      <input id="name" type="text" class="validate" name="name">
                       <label for="name">名前</label>
                     </div>
                 </div>      
                    
                <div class="row">
                     <div class="input-field col s12">
-                        <input id="representative" type="text" class="validate">
+                        <input id="representative" type="text" class="validate" name="representative">
                         <label for="representative">代表者</label>
                     </div> 
                 </div>    
                     
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="local" type="text" class="validate">
+                        <input id="local" type="text" class="validate" name="local">
                         <label for="local">所在地</label>
                     </div> 
                 </div>    
                     
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
+                  <input id="password" type="password" class="validate" name="password">
                   <label for="password">パスワード</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
+                  <input id="email" type="email" class="validate" name="email">
                   <label for="email">メールアドレス</label>
                 </div>
               </div>
@@ -86,11 +87,11 @@
                 
        
     <div class="re">
-        <a class="waves-effect waves-light btn">完了</a>
+        <a type="submit" valye="送信" class="waves-effect waves-light btn">完了</a>
     </div>
 
     </form>
-    
+  </form>  
     
 </body>
 </html>
