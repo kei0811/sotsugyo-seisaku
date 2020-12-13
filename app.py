@@ -11,24 +11,28 @@ app.secret_key = 'sunabakoza'
 @app.route('/')
 def login():
     return render_template('login.html')
+
 # メインページへアクセス
 @app.route("/main.html")
 def move_main():
     return render_template("main.html")
 # メインページから投稿画面へ
-@app.route("/write.html")
+@app.route("/write.html", methods=["GET"])
 def post():
     return render_template("write.html")
 # データベースに情報追加
-@app.route("/write.html",methods=["POST"])
+@app.route("/post",methods=["POST"])
 def db_info():
     task = request.form.get("title_task", "intro_task", "work_task", "salary_task", "target_task", "location_task", "hours_task", "status_task", "holiday_task", "walfare_task", "flow_task", "link_task")
     conn = sqlite3.connect("20201209.db")
-    c = conn.corsor()
-    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?)")
+    c = conn.cursor()
+    c.execute ("insert into job  valuse (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",(id, Ctitle_task, intro_task, work_task, salary_task, target_task, location_task, hours_task, status_task, holiday_task, walfare_task, flow_task, link_task,))
     conn.commit()
     c.close()
     return"投稿されました"
+
+
+
     
 
 
