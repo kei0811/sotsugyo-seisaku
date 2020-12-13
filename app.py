@@ -8,35 +8,38 @@ app = Flask(__name__)
 # Flask では標準で Flask.secret_key を設定すると、sessionを使うことができます。この時、Flask では session の内容を署名付きで Cookie に保存します。
 app.secret_key = 'sunabakoza'
 
-@app.route('/login')
+@app.route('/')
 def login_get():
     return render_template('login.html')
+
 # メインページへアクセス
 @app.route("/main.html")
 def move_main():
     return render_template("main.html")
 # メインページから投稿画面へ
-@app.route("/write.html")
+@app.route("/write.html", methods=["GET"])
 def post():
     return render_template("write.html")
 # データベースに情報追加
 @app.route("/write.html",methods=["POST"])
 def db_info():
-    task = request.form.get("title_task", "intro_task", "work_task", "salary_task", "target_task", "location_task", "hours_task", "status_task", "holiday_task", "walfare_task", "flow_task", "link_task")
+    
+    title = str(request.form.get("title_task"))
+    intro = str(request.form.get("intro_task"))
+    work  = str(request.form.get("title_task"))
+    salary = str(request.form.get("salary_task"))
+    target = str(request.form.get("target_task"))
+    time = str(request.form.get("hours_task"))
+    status = str(request.form.get("status_task"))
+    walfare = str(request.form.get("walfare_task"))
+    flow = str(request.form.get("flow_task"))
+    sns_link = str(request.form.get("link_task"))
     conn = sqlite3.connect("20201209.db")
     c = conn.corsor()
-    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?)")
+    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"(title, intro, work, salary, target, time, status, walfare, flow, sns_link),)
     conn.commit()
     c.close()
     return"投稿されました"
-    
-
-
-
-
-
-
-
 
 @app.route("/login",methods=["POST"])
 def login_post():
