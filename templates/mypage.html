@@ -1,96 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends 'base.html' %}
 
-    <link rel="stylesheet" href="./css/form.css">
+{% block content %}
 
-    <!--link-->
- <!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
- <!-- Compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ <body>
+ 
+  
+  <span><font color="black">写真</font></span>
+  <img src="{{user_imag}}" alt="登録画像"><br>
+      
+  <label for="name">名前</label>
+  <p class="validate">{{users_name}}</p>
+  
+  
+  <label for="representative">代表者</label>
+  <p class="validate">{{users_representative}}</p>
+  
+  <label for="local">所在地</label>
+  <p class="validate">{{users_local}}</p>
+  
+  <label for="password">パスワード</label>
+  <p class="validate">{{users_password}}</p>
+  
+  <label for="email">メールアドレス</label>
+  <p class="validate">{{users_email}}</p>
+  
+  <label for="introduce">紹介文</label>  
+  <p class="validate">{{users_introduce}}</p>
+  <div class="validate">{{users_introduce}}</div>            
          
-</head>
-<body>
-    <h5>更新</h5>
-    
+  <div class="box">   
+  <button class="btn waves-effect waves-light" type="submit" name="save" value="更新">更新 </button>
+  </div>
+  {% endblock %}
+  
    
-        <form action="#">
-            <div class="file-field input-field">
-              <div class="btn">
-                <span><font color="black">写真</font></span>
-                <input type="file" multiple>
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="写真がありません">
-              </div>
-            </div>
-          </form>
-          
-
-          <form action="" method="post">
-          <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                      <input id="name" type="text" class="validate">
-                      <label for="name">名前</label>
-                    </div>
-                </div>      
-                   
-               <div class="row">
-                    <div class="input-field col s12">
-                        <input id="representative" type="text" class="validate">
-                        <label for="representative">代表者</label>
-                    </div> 
-                </div>    
-                    
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="local" type="text" class="validate">
-                        <label for="local">所在地</label>
-                    </div> 
-                </div>    
-                    
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">パスワード</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email">メールアドレス</label>
-                </div>
-              </div>
-              
-            </form>
-
-          </div>
-
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="textarea1" class="materialize-textarea"></textarea>
-                  <label for="introduce">紹介文</label>
-                </div>
-              </div>
-            </form>
-          </div>
-                
        
-    <div class="re">
-        <a class="waves-effect waves-light btn">完了</a>
-    </div>
-
-    </form>
-    
-    
-</body>
-</html>
+ 

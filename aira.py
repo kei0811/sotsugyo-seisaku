@@ -35,7 +35,7 @@ def new_post():
     conn.commit()
     #データベース読み込み終了
     c.close()
-    return "登録完了"
+    return render_template("main.html")
 
 
 if __name__ == "__main__":
