@@ -13,13 +13,21 @@ def login_get():
     return render_template('login.html')
 
 # メインページへアクセス
-@app.route("/main.html")
+@app.route("/main")
 def move_main():
     return render_template("main.html")
+
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
+
+@app.route("/return")
+def return_home():
+    return render_template("main.html")
+
+
+
 # データベースに情報追加
 @app.route("/write",methods=["POST"])
 def db_info():
@@ -30,6 +38,7 @@ def db_info():
     target = request.form.get("target_task")
     location = request.form.get("location_task")
     hours = request.form.get("hours_task")
+    hoursf =request.form.get("hoursf_task")
     satus = request.form.get("status_task")
     holiday = request.form.get("holiday_task")
     walfare = request.form.get("walfare_task")
@@ -38,12 +47,14 @@ def db_info():
     
     conn = sqlite3.connect("20201209.db")
     c = conn.cursor()
-    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, satus, holiday,  walfare, flow, link))
+    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
     conn.commit()
     c.close()
-    return"投稿されました"
+    return render_template("post_after.html")
 
-@app.route("/login",methods=["POST"])
+
+
+@app.route("/",methods=["POST"])
 def login_post():
     name = request.form.get("member_name")
     password = request.form.get("member_pass")
@@ -62,7 +73,7 @@ def login_post():
         return render_template("login.html")
     else:
         session['user_id'] = user_id[0]
-        return redirect("/main.html")
+        return redirect("/main")
 
 
 

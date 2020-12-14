@@ -54,6 +54,8 @@ button.readmore::after {
     height: 30px;
     border-top: solid 3px #666;
     border-right: solid 3px #666;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
     right: 28px;
     top: 25px;
     transition: .5s;
@@ -67,7 +69,6 @@ button.readmore:hover::after {
 .on-click {
     color: transparent !important;
 }
-
 
 .on-click {
     transform: rotate(-180deg);
