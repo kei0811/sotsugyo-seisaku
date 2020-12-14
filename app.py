@@ -13,9 +13,11 @@ def login_get():
     return render_template('login.html')
 
 # メインページへアクセス
-@app.route("/main.html")
+@app.route("/main")
 def move_main():
     return render_template("main.html")
+
+
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
