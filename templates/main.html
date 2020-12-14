@@ -62,7 +62,10 @@
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                 </div>
-                <p>aiueo</p>
+                {% for item in temp_post_list %}
+                <td>{{item["id"]}}</td>
+                <td>{{item["salary"]}}</td>
+                {% endfor% }
             </div>
 
 
