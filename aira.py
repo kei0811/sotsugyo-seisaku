@@ -29,13 +29,33 @@ def new_post():
     conn = sqlite3.connect("20201209.db")
     #中を見れるようにする
     c = conn.cursor()
+
+    
     #sqlを実行
     c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
     #保存する
     conn.commit()
     #データベース読み込み終了
     c.close()
-    return render_template("main.html")
+    return "登録する"
+
+
+@app.route("/mypage")
+def dbtest():
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+    #sqlを実行
+    c.execute("select name, email, password, representative, local, introduce, image, address from users")
+    #変数にSQLで取得した内容を格納する
+    user_info = c.fetchone()
+    #データベース読み込み終了
+    c.close()
+
+    return render_template("mapage.html", tmp_user_info = user_info)
+
+
 
 
 if __name__ == "__main__":
