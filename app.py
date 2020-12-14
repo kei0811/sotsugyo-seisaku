@@ -8,40 +8,45 @@ app = Flask(__name__)
 # Flask では標準で Flask.secret_key を設定すると、sessionを使うことができます。この時、Flask では session の内容を署名付きで Cookie に保存します。
 app.secret_key = 'sunabakoza'
 
-@app.route('/login')
+@app.route('/')
 def login_get():
     return render_template('login.html')
+
 # メインページへアクセス
 @app.route("/main.html")
 def move_main():
     return render_template("main.html")
 # メインページから投稿画面へ
-@app.route("/write.html")
+@app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
 # データベースに情報追加
-@app.route("/write.html",methods=["POST"])
+@app.route("/write",methods=["POST"])
 def db_info():
-    task = request.form.get("title_task", "intro_task", "work_task", "salary_task", "target_task", "location_task", "hours_task", "status_task", "holiday_task", "walfare_task", "flow_task", "link_task")
+    title = request.form.get("title_task")
+    intro = request.form.get("intro_task")
+    work = request.form.get("work_task")
+    salary = request.form.get("salary_task")
+    target = request.form.get("target_task")
+    location = request.form.get("location_task")
+    hours = request.form.get("hours_task")
+    satus = request.form.get("status_task")
+    holiday = request.form.get("holiday_task")
+    walfare = request.form.get("walfare_task")
+    flow = request.form.get("flow_task")
+    link = request.form.get("link_task") 
+    
     conn = sqlite3.connect("20201209.db")
-    c = conn.corsor()
-    c.execute ("insert into job valuse(null, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?)")
+    c = conn.cursor()
+    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, satus, holiday,  walfare, flow, link))
     conn.commit()
     c.close()
     return"投稿されました"
-    
-
-
-
-
-
-
-
 
 @app.route("/login",methods=["POST"])
 def login_post():
-    name=request.form.get("member_name")
-    password=request.form.get("member_pass")
+    name = request.form.get("member_name")
+    password = request.form.get("member_pass")
     # flasktest.db接続
     conn=sqlite3.connect("20201209.db")
     # 中を見れるようにする

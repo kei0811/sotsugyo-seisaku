@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../static/css/form.css">
+
+    <!--link-->
+ <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+         
+</head>
+<body>
+<form action="/bb" method="POST">
+<h5>新規登録</h5>
+
+
+
+<span><font color="black">写真</font></span>
+<input type="file" multiple><br>
+    
+<label for="name">名前</label>
+<input id="name" type="text" class="validate" name="users_name">
+
+
+<label for="representative">代表者</label>
+<input id="representative" type="text" class="validate" name="users_representative">
+
+
+<label for="local">所在地</label>
+<input id="local" type="text" class="validate" name="users_local">
+
+
+<label for="password">パスワード</label>
+<input id="password" type="password" class="validate" name="users_password">
+
+
+<label for="email">メールアドレス</label>
+<input id="email" type="email" class="validate" name="users_email">
+
+<label for="introduce">紹介文</label>  
+<textarea id="textarea1" class="materialize-textarea" name="users_introduce"></textarea>
+
+               
+       
+<div class="box">   
+<button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
+</div>
+
+
+</form>  
+     
+</body>
+</html>

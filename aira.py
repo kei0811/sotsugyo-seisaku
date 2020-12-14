@@ -3,32 +3,63 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Flask では標準で Flask.secret_key を設定すると、sessionを使うことができます。この時、Flask では session の内容を署名付きで Cookie に保存します。
+#秘密のカギ secret_keyの設定 sessionを使えるようにするために必要です
 app.secret_key = 'sunabaco'
 
-@app.route("/new")
-def new():
+
+
+@app.route("/bb", methods=["GET"])
+def new_get():
+       
+    return render_template("bb.html")
+
+
+
+@app.route("/bb", methods=["POST"])
+def new_post():
+   
+    name = request.form.get("users_name")
+    email = request.form.get("users_email")
+    password = request.form.get("users_password")
+    representative = request.form.get("users_representative")
+    local = request.form.get("users_local")
+    introduce = request.form.get("users_introduce")
+    image = request.form.get("users_image")
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+
+    
+    #sqlを実行
+    c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
+    #保存する
+    conn.commit()
+    #データベース読み込み終了
+    c.close()
+    return "登録する"
+
+
+@app.route("/mypage")
+def dbtest():
     #flasktest.db接続
     conn = sqlite3.connect("20201209.db")
     #中を見れるようにする
     c = conn.cursor()
     #sqlを実行
-    c.execute("init name, email, address from users where id = 1")
+    c.execute("select name, email, password, representative, local, introduce, image, address from users")
     #変数にSQLで取得した内容を格納する
     user_info = c.fetchone()
     #データベース読み込み終了
     c.close()
 
-    return render_template("new.html",)
+    return render_template("mapage.html", tmp_user_info = user_info)
 
 
 
 
+if __name__ == "__main__":
+    app.run(debug=True) 
 
-
-
-
-if __name__=="__main__":
-    app.run(debug=True)
 
 # ここより下に書いても実行されないので注意
