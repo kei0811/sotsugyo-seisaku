@@ -17,11 +17,17 @@ def login_get():
 def move_main():
     return render_template("main.html")
 
-
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
+
+@app.route("/return")
+def return_home():
+    return render_template("main.html")
+
+
+
 # データベースに情報追加
 @app.route("/write",methods=["POST"])
 def db_info():
@@ -44,18 +50,9 @@ def db_info():
     c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
     conn.commit()
     c.close()
-    return"投稿されました"
+    return render_template("post_after.html")
 
-@app.route("/main", methods=["GET"])
-def post_list():
-    conn = sqlite3.connect("20201209.db")
-    c = conn.cursor()
-    c.execute("select id, salary from job")
-    post_list= []
-    for row in c.fetchall():
-        post_list.append({"id":row[0], "title":row[1]})
-    c.close()
-    return render_template("#", temp_post_list = post_list)
+
 
 @app.route("/login",methods=["POST"])
 def login_post():
