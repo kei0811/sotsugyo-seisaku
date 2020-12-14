@@ -20,7 +20,7 @@
    <h5>新規登録</h5>
     
    
-        <form action="#">
+       
             <div class="file-field input-field">
               <div class="btn">
                 <span><font color="black">写真</font></span>
@@ -30,10 +30,7 @@
                 <input class="file-path validate" type="text" placeholder="写真がありません" name="users_image">
               </div>
             </div>
-          </form>
-          
-
-          <form action="" method="post">
+                  
           <div class="row">
             <form class="col s12">
                 <div class="row">
@@ -43,58 +40,47 @@
                     </div>
                 </div>      
                    
-               <div class="row">
-                    <div class="input-field col s12">
-                        <input id="representative" type="text" class="validate" name="users_representative">
-                        <label for="representative">代表者</label>
-                    </div> 
-                </div>    
+          <div class="row">
+              <div class="input-field col s12">
+                  <input id="representative" type="text" class="validate" name="users_representative">
+                  <label for="representative">代表者</label>
+              </div> 
+          </div>    
                     
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="local" type="text" class="validate" name="users_local">
-                        <label for="local">所在地</label>
-                    </div> 
-                </div>    
+          <div class="row">
+              <div class="input-field col s12">
+                  <input id="local" type="text" class="validate" name="users_local">
+                  <label for="local">所在地</label>
+              </div> 
+          </div>    
                     
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="password" type="password" class="validate" name="users_password">
-                  <label for="password">パスワード</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate" name="users_email">
-                  <label for="email">メールアドレス</label>
-                </div>
-              </div>
-              
-            </form>
-
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate" name="users_password">
+              <label for="password">パスワード</label>
+            </div>
           </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" name="users_email">
+              <label for="email">メールアドレス</label>
+            </div>
+          </div>       
+
+         
 
           <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="textarea1" class="materialize-textarea" name="users_introduce"></textarea>
-                  <label for="introduce">紹介文</label>
-                </div>
-              </div>
-            </form>
-          </div>
-                
-       
-    <div class="box">
-      
-        <button class="btn waves-effect waves-light" type="submit" name="action">完了
-         
-        </button>
-  
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea" name="users_introduce"></textarea>
+              <label for="introduce">紹介文</label>
+            </div>
+           </div>
+            
+       <div class="box">   
+        <button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
       </div>
 
-    </form>
+
   </form>  
      
 </body>

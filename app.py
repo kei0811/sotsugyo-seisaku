@@ -77,6 +77,52 @@ def login_post():
 
 
 
+@app.route("/new", methods=["GET"])
+def new_get():
+       
+    return render_template("new.html")
+
+
+
+@app.route("/new", methods=["POST"])
+def new_post():
+   
+    name = request.form.get("users_name")
+    email = request.form.get("users_email")
+    password = request.form.get("users_password")
+    representative = request.form.get("users_representative")
+    local = request.form.get("users_local")
+    introduce = request.form.get("users_introduce")
+    image = request.form.get("users_image")
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+
+    
+    #sqlを実行
+    c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
+    #保存する
+    conn.commit()
+    #データベース読み込み終了
+    c.close()
+    return "登録する"
+
+
+@app.route("/mypage")
+def dbtest():
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+    #sqlを実行
+    c.execute("select name, email, password, representative, local, introduce, image, address from users")
+    #変数にSQLで取得した内容を格納する
+    user_info = c.fetchone()
+    #データベース読み込み終了
+    c.close()
+
+    return render_template("mapage.html", tmp_user_info = user_info)
 
 
 
