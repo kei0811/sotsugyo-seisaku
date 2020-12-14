@@ -17,52 +17,72 @@ def login_get():
 def move_main():
     return render_template("main.html")
 # メインページから投稿画面へ
-@app.route("/write.html", methods=["GET"])
+@app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
 # データベースに情報追加
-@app.route("/write.html",methods=["POST"])
+@app.route("/write",methods=["POST"])
 def db_info():
-    title=request.form.get("title_task")
-    intro=request.form.get("intro_task")
-    work=request.form.get("work_task")
-    salary=request.form.get("salary_task")
-    target=request.form.get("target_task")
-    location=request.form.get("location_task")
-    hours=request.form.get("hours_task")
-    satus=request.form.get("status_task")
-    holiday=request.form.get("holiday_task")
-    walfare=request.form.get("walfare_task")
-    flow=request.form.get("flow_task")
-    link=request.form.get("link_task") 
+    title = request.form.get("title_task")
+    intro = request.form.get("intro_task")
+    work = request.form.get("work_task")
+    salary = request.form.get("salary_task")
+    target = request.form.get("target_task")
+    location = request.form.get("location_task")
+    hours = request.form.get("hours_task")
+    satus = request.form.get("status_task")
+    holiday = request.form.get("holiday_task")
+    walfare = request.form.get("walfare_task")
+    flow = request.form.get("flow_task")
+    link = request.form.get("link_task") 
+    
     conn = sqlite3.connect("20201209.db")
-    c = conn.corsor()
-    c.execute ("update job set name = ? where id = ?",(title, intro, work, salary, target, location, hours, status, holiday, walfare, flow, link,))
+    c = conn.cursor()
+    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, satus, holiday,  walfare, flow, link))
     conn.commit()
     c.close()
     return"投稿されました"
 
 @app.route("/login",methods=["POST"])
 def login_post():
-    name=request.form.get("member_name")
-    password=request.form.get("member_pass")
+    name = request.form.get("member_name")
+    password = request.form.get("member_pass")
     # flasktest.db接続
     conn=sqlite3.connect("20201209.db")
     # 中を見れるようにする
     c=conn.cursor()
     # SQLを実行
-    c.execute("select id from users where name=? and pass=?",(name,password))
-    user_id=c.fetchone()
-    user_id=user_id[0]
-    # データベース接続終了
-    c.close()
+    c.execute("select id from users where name=? and password=?",(name,password))
+    user_id = c.fetchone()
+    conn.close()
 
-    if user_id is None:#アカウント名、パスワードが一致しなかったとき
+    # user_id が NULL(PythonではNone)じゃなければログイン成功
+    if user_id is None:
+        # ログイン失敗すると、ログイン画面に戻す
         return render_template("login.html")
-    else:#アカウント名、パスワードが一致したとき
-        session["user_id"]=user_id #sessionに格納
-        return redirect("/main")
-        # リンク先要指定
+    else:
+        session['user_id'] = user_id[0]
+        return redirect("/main.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
