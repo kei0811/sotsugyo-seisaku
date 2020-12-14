@@ -47,18 +47,37 @@ def login_post():
     # 中を見れるようにする
     c=conn.cursor()
     # SQLを実行
-    c.execute("select id from users where name=? and pass=?",(name,password))
+    c.execute("select id from users where name=? and password=?",(name,password))
     user_id=c.fetchone()
-    user_id=user_id[0]
-    # データベース接続終了
-    c.close()
+    conn.close()
 
-    if user_id is None:#アカウント名、パスワードが一致しなかったとき
+    # user_id が NULL(PythonではNone)じゃなければログイン成功
+    if user_id is None:
+        # ログイン失敗すると、ログイン画面に戻す
         return render_template("login.html")
-    else:#アカウント名、パスワードが一致したとき
-        session["user_id"]=user_id #sessionに格納
-        return redirect("/main")
-        # リンク先要指定
+    else:
+        session['user_id'] = user_id[0]
+        return redirect("/main.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
