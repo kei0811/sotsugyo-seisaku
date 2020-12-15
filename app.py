@@ -13,18 +13,35 @@ def login_get():
     return render_template('login.html')
 
 # メインページへアクセス
-@app.route("/main")
+@app.route("/retrn")
 def move_main():
     return render_template("main.html")
+
+
+# 連想配列を用いてpost画面に投稿
+@app.route("/main")
+def post_list():
+    conn=sqlite3.connect("20201209.db")
+    c=conn.cursor()
+    c.execute("select * from job")
+    post_list=[]
+    for row in c.fetchall():
+        post_list.append({"id":[0],"title":[1],"intro":[2],"work":[3],"salary":[4],"target":[5],"location":[6],"hours":[7],"hoursf":[8],"status":[9],"holiday":[10],"walfare":[11],"flow":[12],"link":[13]})
+    print(post_list)
+    c.close()
+    return render_template("main.html",temp_post_list=post_list)
+    
+
 
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
 
-@app.route("/return")
+@app.route("/main")
 def return_home():
     return render_template("main.html")
+
 
 
 
