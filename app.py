@@ -12,10 +12,9 @@ app.secret_key = 'sunabakoza'
 def login_get():
     return render_template('login.html')
 
-# メインページへアクセス
-@app.route("/retrn")
-def move_main():
-    return render_template("main.html")
+
+
+
 
 
 # 連想配列を用いてpost画面に投稿
@@ -30,7 +29,6 @@ def post_list():
     print(post_list)
     c.close()
     return render_template("main.html",temp_post_list=post_list)
-    
 
 
 # メインページから投稿画面へ
@@ -71,7 +69,7 @@ def db_info():
 
 
 
-@app.route("/login",methods=["POST"])
+@app.route("/",methods=["POST"])
 def login_post():
     name = request.form.get("member_name")
     password = request.form.get("member_pass")
@@ -81,7 +79,7 @@ def login_post():
     c=conn.cursor()
     # SQLを実行
     c.execute("select id from users where name=? and password=?",(name,password))
-    user_id = c.fetchone()
+    user_id=c.fetchone()
     conn.close()
 
     # user_id が NULL(PythonではNone)じゃなければログイン成功
@@ -90,10 +88,56 @@ def login_post():
         return render_template("login.html")
     else:
         session['user_id'] = user_id[0]
-        return redirect("/main.html")
+        return redirect("/main")
 
 
 
+@app.route("/new", methods=["GET"])
+def new_get():
+       
+    return render_template("new.html")
+
+
+
+@app.route("/new", methods=["POST"])
+def new_post():
+   
+    name = request.form.get("users_name")
+    email = request.form.get("users_email")
+    password = request.form.get("users_password")
+    representative = request.form.get("users_representative")
+    local = request.form.get("users_local")
+    introduce = request.form.get("users_introduce")
+    image = request.form.get("users_image")
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+
+    
+    #sqlを実行
+    c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
+    #保存する
+    conn.commit()
+    #データベース読み込み終了
+    c.close()
+    return "登録する"
+
+
+@app.route("/mypage")
+def dbtest():
+    #flasktest.db接続
+    conn = sqlite3.connect("20201209.db")
+    #中を見れるようにする
+    c = conn.cursor()
+    #sqlを実行
+    c.execute("select name, email, password, representative, local, introduce, image, address from users")
+    #変数にSQLで取得した内容を格納する
+    user_info = c.fetchone()
+    #データベース読み込み終了
+    c.close()
+
+    return render_template("mapage.html", tmp_user_info = user_info)
 
 
 
