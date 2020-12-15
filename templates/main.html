@@ -48,7 +48,7 @@
     </div>
 
     <main>
-        {% for item in temp_post_list %}
+        {% for item in tmp_post_list %}
         <div id="text-wrap">
 
             <div class="show-text">
@@ -56,7 +56,7 @@
 
 
 
-
+                <!-- これはサンプルです-->
                 <div class="slider">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
@@ -64,8 +64,7 @@
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                 </div>
                 <p>{{item["id"]}}</p>
-
-                <p>{{item[title]}}</p>
+                <p>{{item["title"]}}</p>
                 <h5>{{item["intro"]}}</h5>
                 <h5>{{item["work"]}}</h5>
                 <h5>{{item["salary"]}}</h5>
