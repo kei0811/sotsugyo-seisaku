@@ -529,10 +529,15 @@ h1 {
 }
 
 img {
+    width: 350px;
+    margin: 70px;
+}
+
+/* img {
     width: 100%;
     min-width: 100%;
     margin-bottom: 100px;
-}
+} */
 
 .btn {
     width: 500px;
