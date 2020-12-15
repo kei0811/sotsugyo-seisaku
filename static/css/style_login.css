@@ -513,7 +513,6 @@ template {
 body {
     font-family: "ＭＳ ゴシック", sans-serif;
     font-size: 10px;
-    background-color: red;
 }
 
 .top-part,
@@ -579,4 +578,5 @@ h6 {
 
 .new {
     margin-top: 50px;
+    margin-bottom: 100px;
 }

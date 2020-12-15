@@ -62,7 +62,7 @@ def db_info():
     
     conn = sqlite3.connect("20201209.db")
     c = conn.cursor()
-    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
+    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
     conn.commit()
     c.close()
     return render_template("post_after.html")
