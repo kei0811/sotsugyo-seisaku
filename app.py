@@ -12,10 +12,10 @@ app.secret_key = 'sunabakoza'
 def login_get():
     return render_template('login.html')
 
-# メインページへアクセス
-@app.route("/main")
-def move_main():
-    return render_template("main.html")
+
+
+
+
 
 # 連想配列を用いてpost画面に投稿
 @app.route("/main")
@@ -30,14 +30,16 @@ def post_list():
     c.close()
     return render_template("main.html",temp_post_list=post_list)
 
+
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
 
-@app.route("/return")
+@app.route("/main")
 def return_home():
     return render_template("main.html")
+
 
 
 
