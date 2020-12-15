@@ -48,13 +48,14 @@
     </div>
 
     <main>
+        {% for item in temp_post_list %}
         <div id="text-wrap">
 
             <div class="show-text">
 
 
 
-                <div class="title">農家タイトル</div>
+
 
                 <div class="slider">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
@@ -62,16 +63,32 @@
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                 </div>
+                <p>{{item["id"]}}</p>
+
+                <p>{{item[title]}}</p>
+                <h5>{{item["intro"]}}</h5>
+                <h5>{{item["work"]}}</h5>
+                <h5>{{item["salary"]}}</h5>
+                <h5>{{item["target"]}}</h5>
+                <h5>{{item["location"]}}</h5>
+                <h5>{{item["hours"]}}</h5>
+                <h5>{{item["hoursf"]}}</h5>
+                <h5>{{item["status"]}}</h5>
+
 
             </div>
 
 
             <div class="hide-text">
-                <p>aiueo</p>
+                <h5>{{item["holiday"]}}</h5>
+                <h5>{{item["walfare"]}}</h5>
+                <h5>{{item["flow"]}}</h5>
+                <h5>{{item["link"]}}</h5>
 
             </div>
             <button class="readmore"> 続きを読む </button>
         </div>
+        {% endfor %}
 
 
     </main>
