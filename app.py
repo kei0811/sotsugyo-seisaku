@@ -105,31 +105,83 @@ def new_post():
     conn = sqlite3.connect("20201209.db")
     #中を見れるようにする
     c = conn.cursor()
-
-    
     #sqlを実行
     c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
     #保存する
     conn.commit()
     #データベース読み込み終了
     c.close()
-    return "登録する"
+    
+    return render_template("new_after.html")
 
 
 @app.route("/mypage")
 def dbtest():
-    #flasktest.db接続
-    conn = sqlite3.connect("20201209.db")
-    #中を見れるようにする
-    c = conn.cursor()
-    #sqlを実行
-    c.execute("select name, email, password, representative, local, introduce, image, address from users")
-    #変数にSQLで取得した内容を格納する
-    user_info = c.fetchone()
-    #データベース読み込み終了
-    c.close()
+   if 'user_id' in session :
+        user_id = session['user_id'] #flasktest.db接続
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("select * from users where id = ?",(user_id,))
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
 
-    return render_template("mapage.html", tmp_user_info = user_info)
+        return render_template("mypage.html", tmp_user_info = user_info)
+  
+  
+  
+
+    
+@app.route("/edit", methods=["GET"])
+def edit_get():
+    if 'user_id' in session :
+        user_id = session['user_id']
+        #flasktest.db接続
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("select * from users where id = ?",(user_id,))
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return render_template("edit.html", tmp_user_info = user_info)
+    else:
+        return redirect("/")
+
+@app.route("/edit", methods=["POST"])
+def edit_post():
+    if 'user_id' in session :
+        user_id = session['user_id']
+
+        name = request.form.get("users_name")
+        email = request.form.get("users_email")
+        password = request.form.get("users_password")
+        representative = request.form.get("users_representative")
+        local = request.form.get("users_local")
+        introduce = request.form.get("users_introduce")
+        image = request.form.get("users_image")
+        #flasktest.db接続 
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce = ?, image = ? where id = ?",( name, email, password, representative, local, introduce, image,user_id))
+        #保存する
+        conn.commit()
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return redirect("/mypage")
+    else:
+        return redirect("/")
 
 
 
