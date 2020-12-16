@@ -132,6 +132,54 @@ def dbtest():
     return render_template("mapage.html", tmp_user_info = user_info)
 
 
+    
+@app.route("/edit", methods=["GET"])
+def edit_get():
+    if 'user_id' in session :
+        user_id = session['user_id']
+        #flasktest.db接続
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("select * from users where id = ?",(user_id,))
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return render_template("edit.html", tmp_user_info = user_info)
+    else:
+        return redirect("/login")
+
+@app.route("/edit", methods=["POST"])
+def edit_post():
+    if 'user_id' in session :
+        user_id = session['user_id']
+
+        name = request.form.get("users_name")
+        email = request.form.get("users_email")
+        password = request.form.get("users_password")
+        representative = request.form.get("users_representative")
+        local = request.form.get("users_local")
+        introduce = request.form.get("users_introduce")
+        image = request.form.get("users_image")
+        #flasktest.db接続
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("update users set  where * = ?",( name[1], email[2], password[3], representative[4], local[5], introduce[6], image[7] ))
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return render_template("mypage.html", tmp_user_info = user_info)
+    else:
+        return redirect("/login")
+
+
 
 
 
