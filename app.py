@@ -13,11 +13,11 @@ def login_get():
     return render_template('login.html')
 
 
-
-
-
-
-# 連想配列を用いてpost画面に投稿
+# メインページから投稿画面へ
+@app.route("/write", methods=["GET"])
+def post():
+    return render_template("write.html")
+ # 連想配列を用いてpost画面に投稿
 @app.route("/main")
 def post_list():
     conn=sqlite3.connect("20201209.db")
@@ -25,20 +25,10 @@ def post_list():
     c.execute("select * from job")
     post_list=[]
     for row in c.fetchall():
-        post_list.append({"id":[0],"title":[1],"intro":[2],"work":[3],"salary":[4],"target":[5],"location":[6],"hours":[7],"hoursf":[8],"status":[9],"holiday":[10],"walfare":[11],"flow":[12],"link":[13]})
+        post_list.append({"id":row[0],"title":row[1],"intro":row[2],"work":row[3],"salary":row[4],"target":row[5],"location":row[6],"hours":row[7],"hoursf":row[8],"status":row[9],"holiday":row[10],"walfare":row[11],"flow":row[12],"link":row[13]})
     print(post_list)
     c.close()
-    return render_template("main.html",temp_post_list=post_list)
-
-
-# メインページから投稿画面へ
-@app.route("/write", methods=["GET"])
-def post():
-    return render_template("write.html")
-
-@app.route("/main")
-def return_home():
-    return render_template("main.html")
+    return render_template("main.html",tmp_post_list=post_list)
 
 
 
@@ -66,6 +56,8 @@ def db_info():
     conn.commit()
     c.close()
     return render_template("post_after.html")
+
+
 
 
 
