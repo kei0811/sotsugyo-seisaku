@@ -116,7 +116,7 @@ def new_post():
 
 @app.route("/mypage")
 def dbtest():
-   if 'user_id' in session :
+    if 'user_id' in session :
         user_id = session['user_id'] #flasktest.db接続
         conn = sqlite3.connect("20201209.db")
         #中を見れるようにする
@@ -129,6 +129,9 @@ def dbtest():
         c.close()
 
         return render_template("mypage.html", tmp_user_info = user_info)
+    else:
+        # ログインしてないと、ログイン画面に戻す
+        return render_template("login.html")
   
   
   
