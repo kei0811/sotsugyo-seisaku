@@ -2,35 +2,78 @@
 
 {% block content %}
 
- <body>
- 
+
+<form action="#">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span><font color="black">写真</font></span>
+        <input type="file" multiple value="{{tmp_user_info[7]}}">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="写真がありません">
+      </div>
+    </div>
+  </form>
   
-  <span><font color="black">写真</font></span>
-  <img src="{{tmp_user_info[7]}}" alt="登録画像"><br>
+
+  <form action="" method="post">
+  <div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate" value="{{tmp_user_info[1]}}">
+              <label for="name">名前</label>
+            </div>
+        </div>      
+           
+       <div class="row">
+            <div class="input-field col s12">
+                <input id="representative" type="text" class="validate" value="{{tmp_user_info[4]}}">
+                <label for="representative">代表者</label>
+            </div> 
+        </div>    
+            
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="local" type="text" class="validate" value="{{tmp_user_info[5]}}">
+                <label for="local">所在地</label>
+            </div> 
+        </div>    
+            
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" value="{{tmp_user_info[3]}}">
+          <label for="password">パスワード</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" value="{{tmp_user_info[2]}}">
+          <label for="email">メールアドレス</label>
+        </div>
+      </div>
       
-  <label for="name">名前</label>
-  <p class="validate">{{tmp_user_info[1]}}</p>
-  
-  
-  <label for="representative">代表者</label>
-  <p class="validate">{{tmp_user_info[4]}}</p>
-  
-  <label for="local">所在地</label>
-  <p class="validate">{{tmp_user_info[5]}}</p>
-  
-  <label for="password">パスワード</label>
-  <p class="validate">{{tmp_user_info[3]}}</p>
-  
-  <label for="email">メールアドレス</label>
-  <p class="validate">{{tmp_user_info[2]}}</p>
-  
-  <label for="introduce">紹介文</label>  
-  <p class="validate">{{tmp_user_info[6]}}</p>
-              
-         
-  <div class="box">   
-  <button class="btn waves-effect waves-light" type="submit" name="save" value="更新" href="/edit">更新 </button>
+    </form>
+
   </div>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" >"{{tmp_user_info[6]}}"</textarea>
+          <label for="introduce">紹介文</label>
+        </div>
+      </div>
+    </form>
+  </div>
+        
+
+<div class="re">
+<a class="waves-effect waves-light btn" type="submit" name="save" href="/edit">更新</a>
+</div>
+
+</form>
   {% endblock %}
   
    

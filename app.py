@@ -111,6 +111,7 @@ def new_post():
     conn.commit()
     #データベース読み込み終了
     c.close()
+    
     return render_template("new_after.html")
 
 
@@ -158,20 +159,20 @@ def edit_post():
     if 'user_id' in session :
         user_id = session['user_id']
 
-        name = request.form.get("users_name")
-        email = request.form.get("users_email")
-        password = request.form.get("users_password")
-        representative = request.form.get("users_representative")
-        local = request.form.get("users_local")
-        introduce = request.form.get("users_introduce")
-        image = request.form.get("users_image")
+        name = request.form.get("{{tmp_user_info[1]}}")
+        email = request.form.get("{{tmp_user_info[2]}}")
+        password = request.form.get("{{tmp_user_info[3]}}")
+        representative = request.form.get("{{tmp_user_info[4]}}")
+        local = request.form.get("{{tmp_user_info[5]}}")
+        introduce = request.form.get("{{tmp_user_info[6]}}")
+        image = request.form.get("{{tmp_user_info[7]}}")
         #flasktest.db接続
         conn = sqlite3.connect("20201209.db")
         #中を見れるようにする
         c = conn.cursor()
         #sqlを実行
-        c.execute("update users set  where * = ?",( name[1], email[2], password[3], representative[4], local[5], introduce[6], image[7] ))
-        #保存する
+        c.execute("update users set * = ?",( name[1], email[2], password[3], representative[4], local[5], introduce[6], image[7] ))
+        #保存する("update bbs set comment = ? where id = ?",(comment,item_id))
         conn.commit()
         #変数にSQLで取得した内容を格納する
         user_info = c.fetchone()
