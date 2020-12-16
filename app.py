@@ -128,10 +128,10 @@ def dbtest():
         #データベース読み込み終了
         c.close()
 
-        return render_template("mapage.html", tmp_user_info = user_info)
-    else:
-        return redirect("/")
-
+        return render_template("mypage.html", tmp_user_info = user_info)
+  
+  
+  
 
     
 @app.route("/edit", methods=["GET"])
