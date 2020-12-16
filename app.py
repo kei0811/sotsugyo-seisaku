@@ -1,6 +1,5 @@
 from flask import Flask,render_template,request,redirect,session
 import sqlite3
-
 app = Flask(__name__)
 
 
@@ -22,7 +21,7 @@ def post():
 def post_list():
     conn=sqlite3.connect("20201209.db")
     c=conn.cursor()
-    c.execute("select * from job")
+    c.execute("select * from job order by id desc")
     post_list=[]
     for row in c.fetchall():
         post_list.append({"id":row[0],"title":row[1],"intro":row[2],"work":row[3],"salary":row[4],"target":row[5],"location":row[6],"hours":row[7],"hoursf":row[8],"status":row[9],"holiday":row[10],"walfare":row[11],"flow":row[12],"link":row[13]})
