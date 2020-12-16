@@ -6,27 +6,27 @@
  
   
   <span><font color="black">写真</font></span>
-  <img src="{{user_imag}}" alt="登録画像"><br>
+  <img src="{{user_imag[7]}}" alt="登録画像"><br>
       
   <label for="name">名前</label>
-  <p class="validate">{{users_name}}</p>
+  <p class="validate">{{users_name[1]}}</p>
   
   
   <label for="representative">代表者</label>
-  <p class="validate">{{users_representative}}</p>
+  <p class="validate">{{users_representative[4]}}</p>
   
   <label for="local">所在地</label>
-  <p class="validate">{{users_local}}</p>
+  <p class="validate">{{users_local[5]}}</p>
   
   <label for="password">パスワード</label>
-  <p class="validate">{{users_password}}</p>
+  <p class="validate">{{users_password[3]}}</p>
   
   <label for="email">メールアドレス</label>
-  <p class="validate">{{users_email}}</p>
+  <p class="validate">{{users_email[2]}}</p>
   
   <label for="introduce">紹介文</label>  
-  <p class="validate">{{users_introduce}}</p>
-  <div class="validate">{{users_introduce}}</div>            
+  <p class="validate">{{users_introduce[6]}}</p>
+              
          
   <div class="box">   
   <button class="btn waves-effect waves-light" type="submit" name="save" value="更新">更新 </button>
