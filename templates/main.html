@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../static/css/main.css">
+
     <!-- Compiled and minified CSS -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
 
 
     <!-- Compiled and minified JavaScript -->
@@ -52,36 +53,32 @@
         <div id="text-wrap">
 
             <div class="show-text">
+                <p>{{item["id"]}}</p>
+                <h3>・{{item["title"]}}</h3>
 
-
-
-
-                <!-- これはサンプルです-->
                 <div class="slider">
+                    <!-- 画像はサンプルです -->
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                     <img src="../static/img/トマト.png" width="500" height="300" alt="">
                 </div>
-                <p>{{item["id"]}}</p>
-                <p>{{item["title"]}}</p>
-                <h5>{{item["intro"]}}</h5>
-                <h5>{{item["work"]}}</h5>
-                <h5>{{item["salary"]}}</h5>
-                <h5>{{item["target"]}}</h5>
-                <h5>{{item["location"]}}</h5>
-                <h5>{{item["hours"]}}</h5>
-                <h5>{{item["hoursf"]}}</h5>
-                <h5>{{item["status"]}}</h5>
+                <div id="int">農業紹介: {{item["intro"]}}</div>
+                <h5>仕事内容: {{item["work"]}}</h5>
+                <h5>給料: {{item["salary"]}}</h5>
+                <h5>対象となる人: {{item["target"]}}</h5>
+                <h5>勤務場所: {{item["location"]}}</h5>
+                <h5>時間{{item["hours"]}} 〜 {{item["hoursf"]}}</h5>
+                <h5>雇用形態: {{item["status"]}}</h5>
 
 
             </div>
 
 
             <div class="hide-text">
-                <h5>{{item["holiday"]}}</h5>
-                <h5>{{item["walfare"]}}</h5>
-                <h5>{{item["flow"]}}</h5>
+                <h5>休暇: {{item["holiday"]}}</h5>
+                <h5>福利厚生: {{item["walfare"]}}</h5>
+                <h5>応募の流れ: {{item["flow"]}}</h5>
                 <h5>{{item["link"]}}</h5>
 
             </div>

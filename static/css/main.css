@@ -7,25 +7,24 @@ img {
 }
 
 .title {
-    font-size: 50px;
     text-align: center;
+    font-size: 100px;
 }
 
-p {
-    text-align: center;
-    font-size: 16px;
-    color: #666;
-    line-height: 2.5;
-    margin: 0;
+
+#int {
+    font-size: 40px;
 }
+
 
 #text-wrap {
-    width: 50%;
+    width: 100%;
     height: 100%;
-    display: block;
     margin: 0 auto;
     padding: 70px;
+    display: block;
 }
+
 
 .hide-text {
     display: none;
@@ -37,11 +36,11 @@ button.readmore {
     height: 80px;
     width: 90px;
     margin: 40px auto;
-    display: block;
     background-color: transparent;
     color: #666;
     padding-bottom: 40px;
     border: none;
+    display: block;
     outline: 0;
     transition: .5s;
     -erbkit-transition: .5s;
