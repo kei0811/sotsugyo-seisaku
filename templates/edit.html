@@ -15,24 +15,21 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
          
 </head>
-<body class="amber lighten-5">
-  <form action="/edit" method="POST">
+<body>
+ 
     <h5>更新ページ</h5>
-     
+   
     
-        
-             <div class="file-field input-field">
-               <div class="btn">
-                 <span><font color="black">写真</font></span>
-                 <input type="file" multiple>
-               </div>
-               <div class="file-path-wrapper">
-                 <input class="file-path validate" type="text" placeholder="写真がありません" name="users_image" >
-               </div>
-             </div>
-                   
-           <div class="row">
-             <form class="col s12">
+      <img src="/static/img/{{tmp_user_info[7]}}" alt="" class="prof_img">
+      <p>画像変更</p>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+              <input type="file" name="upload"></br>
+              <input type="submit" value="画像アップロード"></br>
+          </form>  
+    
+
+    <form action="/edit" method="POST">           
+       <form class="col s12">
                  <div class="row">
                      <div class="input-field col s12">
                        <input id="name" type="text" class="validate" name="users_name"  value="{{tmp_user_info[1]}}">
@@ -60,28 +57,29 @@
                <label for="password">パスワード</label>
              </div>
            </div>
-           <div class="row">
-             <div class="input-field col s12">
-               <input id="email" type="email" class="validate" name="users_email"  value="{{tmp_user_info[2]}}">
-               <label for="email">メールアドレス</label>
-             </div>
-           </div>       
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" name="users_email"  value="{{tmp_user_info[2]}}">
+                    <label for="email">メールアドレス</label>
+                  </div>
+                </div>       
  
           
  
-           <div class="row">
+            <div class="row">
              <div class="input-field col s12">
                <textarea id="textarea1" class="materialize-textarea" name="users_introduce"> {{tmp_user_info[6]}}</textarea>
                <label for="introduce">紹介文</label>
              </div>
             </div>
              
-        <div class="box">   
-         <button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
-       </div>
- 
- 
-   </form>  
+                    <div class="box">   
+                    <button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
+                  </div>
+           </form>
+     
+      </form>  
       
 </body>
 </html>
+
