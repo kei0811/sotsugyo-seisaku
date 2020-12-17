@@ -1,0 +1,50 @@
+.container {
+    max-width: 1170px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+header {
+    height: 65px;
+    width: 100%;
+    background-color: #81c784;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+
+
+.header-left {
+    float: left;
+    padding: 20px;
+    color: white;
+}
+
+.header-center {
+    text-align: center;
+}
+
+.logo {
+    width: 60px;
+}
+
+.right {
+    float: right;
+    width: 150px;
+    margin-top: -40px;
+}
+
+.header-right a {
+    line-height: 65px;
+    padding: 0 25px;
+    color: white;
+    display: block;
+    float: left;
+    transition: all 0.5s;
+}
+
+.header-right a:hover {
+    background-color: white;
+}

@@ -1,5 +1,7 @@
-from flask import Flask,render_template,request,redirect,session
+from flask import Flask,render_template,request,redirect,sessions
 import sqlite3
+
+
 app = Flask(__name__)
 
 
@@ -16,6 +18,10 @@ def login_get():
 @app.route("/write", methods=["GET"])
 def post():
     return render_template("write.html")
+
+
+
+
  # 連想配列を用いてpost画面に投稿
 @app.route("/main")
 def post_list():
@@ -28,6 +34,8 @@ def post_list():
     print(post_list)
     c.close()
     return render_template("main.html",tmp_post_list=post_list)
+
+#ページ数を設定
 
 
 

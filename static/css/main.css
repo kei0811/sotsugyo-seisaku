@@ -12,7 +12,7 @@ img {
 }
 
 .border-bottom {
-    border-bottom: 3px solid black;
+    border-bottom: inset 1px black;
 }
 
 p {
