@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect,session
 import sqlite3
+import os
 app = Flask(__name__)
 
 
@@ -15,7 +16,12 @@ def login_get():
 # メインページから投稿画面へ
 @app.route("/write", methods=["GET"])
 def post():
-    return render_template("write.html")
+    if 'user_id' in session :
+      user_id = session['user_id'] #flasktest.db接続
+      return render_template("write.html")
+    else:
+        # ログインしてないと、ログイン画面に戻す
+        return render_template("worker.html")
  # 連想配列を用いてpost画面に投稿
 @app.route("/main")
 def post_list():
@@ -82,6 +88,71 @@ def login_post():
         return redirect("/main")
 
 
+#投稿画面の更新
+@app.route("/post_update", methods=["GET"])
+def post_get():
+    if 'user_id' in session :
+        user_id = session['user_id']
+        #flasktest.db接続
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("select * from job where id = ?",(user_id,))
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return render_template("/post_update.html", tmp_post_info = post_info)
+    else:
+        return redirect("/")
+
+
+@app.route("/post_update", methods=["POST"])
+def post_update():
+    if 'user_id' in session :
+        user_id = session['user_id']
+
+        itle = request.form.get("title_task")
+        intro = request.form.get("intro_task")
+        work = request.form.get("work_task")
+        salary = request.form.get("salary_task")
+        target = request.form.get("target_task")
+        location = request.form.get("location_task")
+        hours = request.form.get("hours_task")
+        hoursf =request.form.get("hoursf_task")
+        satus = request.form.get("status_task")
+        holiday = request.form.get("holiday_task")
+        walfare = request.form.get("walfare_task")
+        flow = request.form.get("flow_task")
+        link = request.form.get("link_task") 
+        # image = request.form.get("users_image")
+        #flasktest.db接続 
+        conn = sqlite3.connect("20201209.db")
+        #中を見れるようにする
+        c = conn.cursor()
+        #sqlを実行
+        c.execute("update job set title = ?, intro = ?, work = ?,  salary= ?, target =?, location=?  hours=?, hoursf=?, satus=?,  holiday=?,  walfare=?, flow=?, link=? where id=?",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
+        #保存する
+        conn.commit()
+        #変数にSQLで取得した内容を格納する
+        user_info = c.fetchone()
+        #データベース読み込み終了
+        c.close()
+
+        return redirect("/")
+    else:
+        return redirect("/")
+
+
+
+
+
+@app.route("/logout")
+def logout():
+    session.pop("user_id",None)
+    return redirect("/")
 
 @app.route("/new", methods=["GET"])
 def new_get():
@@ -99,13 +170,13 @@ def new_post():
     representative = request.form.get("users_representative")
     local = request.form.get("users_local")
     introduce = request.form.get("users_introduce")
-    image = request.form.get("users_image")
+    
     #flasktest.db接続
     conn = sqlite3.connect("20201209.db")
     #中を見れるようにする
     c = conn.cursor()
     #sqlを実行
-    c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, image ))
+    c.execute("insert into users values(null,?,?,?,?,?,?,?)",( name, email, password, representative, local, introduce, "no-img.gif" ))
     #保存する
     conn.commit()
     #データベース読み込み終了
@@ -126,12 +197,18 @@ def dbtest():
         #変数にSQLで取得した内容を格納する
         user_info = c.fetchone()
         #データベース読み込み終了
+        print(str(user_info[7]))
         c.close()
 
         return render_template("mypage.html", tmp_user_info = user_info)
     else:
         # ログインしてないと、ログイン画面に戻す
-        return render_template("login.html")
+        return render_template("worker.html")
+
+
+
+
+
   
   
   
@@ -167,13 +244,13 @@ def edit_post():
         representative = request.form.get("users_representative")
         local = request.form.get("users_local")
         introduce = request.form.get("users_introduce")
-        image = request.form.get("users_image")
+        # image = request.form.get("users_image")
         #flasktest.db接続 
         conn = sqlite3.connect("20201209.db")
         #中を見れるようにする
         c = conn.cursor()
         #sqlを実行
-        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce = ?, image = ? where id = ?",( name, email, password, representative, local, introduce, image, user_id))
+        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce =? where id=?",( name, email, password, representative, local, introduce, user_id))
         #保存する
         conn.commit()
         #変数にSQLで取得した内容を格納する
@@ -184,6 +261,42 @@ def edit_post():
         return redirect("/mypage")
     else:
         return redirect("/")
+
+@app.route('/upload', methods=["POST"])
+def do_upload():
+    # bbs.tplのinputタグ name="upload" をgetしてくる
+    upload = request.files['upload']
+    # uploadで取得したファイル名をlower()で全部小文字にして、ファイルの最後尾の拡張子が'.png', '.jpg', '.jpeg'ではない場合、returnさせる。
+    if not upload.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        return 'png,jpg,jpeg形式のファイルを選択してください'
+    
+    # 下の def get_save_path()関数を使用して "./static/img/" パスを戻り値として取得する。
+    save_path = get_save_path()
+    # パスが取得できているか確認
+    print(save_path)
+    # ファイルネームをfilename変数に代入
+    filename = upload.filename
+    # 画像ファイルを./static/imgフォルダに保存。 os.path.join()は、パスとファイル名をつないで返してくれます。
+    upload.save(os.path.join(save_path,filename))
+    # ファイル名が取れることを確認、あとで使うよ
+    print(filename)
+    
+    # アップロードしたユーザのIDを取得
+    user_id = session['user_id']
+    conn = sqlite3.connect('20201209.db')
+    c = conn.cursor()
+    # update文
+    # 上記の filename 変数ここで使うよ
+    c.execute("update users set image = ? where id  = ?", (filename, user_id))
+    conn.commit()
+    conn.close()
+
+    return redirect ('/edit')
+
+def get_save_path():
+    path_dir = "./static/img"
+    return path_dir
+
 
 
 
