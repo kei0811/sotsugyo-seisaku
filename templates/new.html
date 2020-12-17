@@ -16,21 +16,21 @@
          
 </head>
 <body>
-  <form action="/new" method="POST">
+  
    <h5>新規登録</h5>
-    
+  
+  
+   <!--<img src="/static/img/no-img.gif" alt="" class="prof_img">
+   <p>画像変更</p>
+   <form action="/upload" method="post" enctype="multipart/form-data">
+           <input type="file" name="upload"></br>
+           <input type="submit" value="画像アップロード"></br>
+   </form> -->
    
-       
-            <div class="file-field input-field">
-              <div class="btn">
-                <span><font color="black">写真</font></span>
-                <input type="file" multiple>
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="写真がありません" name="users_image">
-              </div>
-            </div>
-                  
+
+
+   
+   <form action="/new" method="POST">          
           <div class="row">
             <form class="col s12">
                 <div class="row">
@@ -39,7 +39,7 @@
                       <label for="name">名前</label>
                     </div>
                 </div>      
-                   
+                
           <div class="row">
               <div class="input-field col s12">
                   <input id="representative" type="text" class="validate" name="users_representative">
@@ -76,11 +76,11 @@
             </div>
            </div>
             
-       <div class="box">   
-        <button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
+            <div class="box">   
+              <button class="btn waves-effect waves-light" type="submit" name="save" value="登録">完了 </button>
+            </div>
+      </form>
       </div>
-
-
   </form>  
      
 </body>
