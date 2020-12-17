@@ -84,6 +84,11 @@ def login_post():
 
 
 
+@app.route("/logout")
+def logout():
+    session.pop("user_id",None)
+    return redirect("/")
+
 @app.route("/new", methods=["GET"])
 def new_get():
        
@@ -133,7 +138,7 @@ def dbtest():
         return render_template("mypage.html", tmp_user_info = user_info)
     else:
         # ログインしてないと、ログイン画面に戻す
-        return render_template("/")
+        return redirect("/")
   
   
   
@@ -175,7 +180,7 @@ def edit_post():
         #中を見れるようにする
         c = conn.cursor()
         #sqlを実行
-        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce = ?, where id = ?",( name, email, password, representative, local, introduce, user_id))
+        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce =? where id=?",( name, email, password, representative, local, introduce, user_id))
         #保存する
         conn.commit()
         #変数にSQLで取得した内容を格納する
