@@ -25,7 +25,7 @@ def post_list():
     c.execute("select * from job order by id desc")
     post_list=[]
     for row in c.fetchall():
-        post_list.append({"id":row[0],"title":row[1],"intro":row[2],"work":row[3],"salary":row[4],"target":row[5],"location":row[6],"hours":row[7],"hoursf":row[8],"status":row[9],"holiday":row[10],"walfare":row[11],"flow":row[12],"link":row[13]})
+        post_list.append({"id":row[0],"title":row[1],"intro":row[2],"work":row[3],"salary":row[4],"target":row[5],"location":row[6],"hours":row[7],"hoursf":row[8],"status":row[9],"holiday":row[10],"walfare":row[11],"flow":row[12],"link":row[13],"image":row[14]})
     print(post_list)
     c.close()
     return render_template("main.html",tmp_post_list=post_list)
@@ -49,10 +49,10 @@ def db_info():
     walfare = request.form.get("walfare_task")
     flow = request.form.get("flow_task")
     link = request.form.get("link_task") 
-    
+    image = request.form.get("image_task")
     conn = sqlite3.connect("20201209.db")
     c = conn.cursor()
-    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link))
+    c.execute ("insert into job values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(title, intro, work, salary, target, location, hours, hoursf, satus, holiday,  walfare, flow, link,image))
     conn.commit()
     c.close()
     return render_template("post_after.html")
@@ -217,6 +217,43 @@ def do_upload():
     conn.close()
 
     return redirect ('/edit')
+
+def get_save_path():
+    path_dir = "./static/img"
+    return path_dir
+
+@app.route('/upload.writ', methods=["POST"])
+def write_upload():
+    # bbs.tplのinputタグ name="upload" をgetしてくる
+    upload = request.files['upload']
+    # uploadで取得したファイル名をlower()で全部小文字にして、ファイルの最後尾の拡張子が'.png', '.jpg', '.jpeg'ではない場合、returnさせる。
+    if not upload.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        return 'png,jpg,jpeg形式のファイルを選択してください'
+    
+    # 下の def get_save_path()関数を使用して "./static/img/" パスを戻り値として取得する。
+    save_path = get_save_path()
+    # パスが取得できているか確認
+    print(save_path)
+    # ファイルネームをfilename変数に代入
+    filename = upload.filename
+    # 画像ファイルを./static/imgフォルダに保存。 os.path.join()は、パスとファイル名をつないで返してくれます。
+    upload.save(os.path.join(save_path,filename))
+    # ファイル名が取れることを確認、あとで使うよ
+    print(filename)
+    
+    # アップロードしたユーザのIDを取得
+    id = request.form.get("id")
+    
+    conn = sqlite3.connect('20201209.db')
+    c = conn.cursor()
+
+    c.execute("insert into job(image, id) values(?,?)",(filename, id))
+ 
+    conn.commit()
+
+    conn.close()
+
+    return redirect ('/write')
 
 def get_save_path():
     path_dir = "./static/img"

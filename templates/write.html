@@ -16,8 +16,13 @@
         <div class="nav-wrapper green lighten-2">
             <a class="team-name center">卒業制作</a>
             <a href="#" class="brand-logo center">
-                <img src="../static/img/トマト.png" alt="logo">
+                <img src="../static/img/{{'image_task'}}" alt="logo">
             </a>
+            <p>画像変更</p>
+                <form action="/upload.writ" method="post" enctype="multipart/form-data">
+                    <br><input type="file" name="upload"></br>
+                   <br><input type="submit" value="画像アップロード"></br>
+                </form>
 
 
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -36,12 +41,7 @@
                     <td><input type="text" size="30" maxlength="20" name="title_task"></td>
                 </tr>
 
-                <tr>
-                    <td align="right"><b> ・写真 :</b></td>
-                    <td><input type="file" id="img_photo" accept="image/*" size="500">
-
-                    </td>
-                </tr>
+                
 
                 <tr>
                     <td align="right"><b>・農業紹介: </b></td>
