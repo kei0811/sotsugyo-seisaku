@@ -239,9 +239,7 @@ def get_save_path():
 
 
 
-@app.route("/main#")
-def mainpge():
-    return render_template("login.html")
+
 
 
 
