@@ -287,7 +287,42 @@ def get_save_path():
     path_dir = "./static/img"
     return path_dir
 
+@app.route('/upload.writ', methods=["POST"])
+def write_upload():
+    # bbs.tplのinputタグ name="upload" をgetしてくる
+    upload = request.files['upload']
+    # uploadで取得したファイル名をlower()で全部小文字にして、ファイルの最後尾の拡張子が'.png', '.jpg', '.jpeg'ではない場合、returnさせる。
+    if not upload.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        return 'png,jpg,jpeg形式のファイルを選択してください'
+    
+    # 下の def get_save_path()関数を使用して "./static/img/" パスを戻り値として取得する。
+    save_path = get_save_path()
+    # パスが取得できているか確認
+    print(save_path)
+    # ファイルネームをfilename変数に代入
+    filename = upload.filename
+    # 画像ファイルを./static/imgフォルダに保存。 os.path.join()は、パスとファイル名をつないで返してくれます。
+    upload.save(os.path.join(save_path,filename))
+    # ファイル名が取れることを確認、あとで使うよ
+    print(filename)
+    
+    # アップロードしたユーザのIDを取得
+    id = request.form.get("id")
+    
+    conn = sqlite3.connect('20201209.db')
+    c = conn.cursor()
 
+    c.execute("insert into job(image, id) values(?,?)",(filename, id))
+ 
+    conn.commit()
+
+    conn.close()
+
+    return redirect ('/write')
+
+def get_save_path():
+    path_dir = "./static/img"
+    return path_dir
 
 
 
