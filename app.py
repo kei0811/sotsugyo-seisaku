@@ -175,7 +175,7 @@ def edit_post():
         #中を見れるようにする
         c = conn.cursor()
         #sqlを実行
-        c.execute("update users set name = ?, email = ?, password = ?,  representative = ?, local =?, introduce = ?, where id = ?",( name, email, password, representative, local, introduce, user_id))
+        c.execute("update users set name = ?, email = ?, password = ?, representative = ?, local =?, introduce = ? where id = ?",( name, email, password, representative, local, introduce, user_id))
         #保存する
         conn.commit()
         #変数にSQLで取得した内容を格納する
