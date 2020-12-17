@@ -2,6 +2,23 @@
 
 {% block content %}
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/mypage.css">
+    <link rel="stylesheet" href="destyle.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+
 <body class="amber lighten-5">
 
 
@@ -62,11 +79,12 @@
           
 
   <div class="re">
-  <a class="waves-effect waves-light btn" type="submit" name="save" href="/edit">更新</a>
+  <a class="waves-effect waves-light btn my_update" type="submit" name="save" href="/edit">マイページ更新</a>
+  <a class="waves-effect waves-light btn to_update" href="/update">投稿ページ更新</a>
   </div>
 
   <div>
-    <a class="waves-effect waves-light btn" href="/logout">ログアウト</a>
+    <a class="waves-effect waves-light btn logout" href="/logout">ログアウト</a>
   </div>
 
 </body>
