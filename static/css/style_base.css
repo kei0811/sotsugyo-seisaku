@@ -513,3 +513,14 @@ template {
 .headerimg {
     width: 60px;
 }
+
+
+
+
+@media(max-width:600px) {
+
+
+    .container {
+        width: 600px;
+    }
+}
