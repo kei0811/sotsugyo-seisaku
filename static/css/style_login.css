@@ -524,7 +524,11 @@ body {
 
 h1 {
     font-size: 20px;
-    /* 方法検討 */
+    color: white;
+}
+
+.top-part .title {
+    color: white;
 }
 
 img {
